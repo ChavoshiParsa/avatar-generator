@@ -1,6 +1,6 @@
 import "./style.css";
 
-const SIZE = 500;
+const SIZE = 600;
 
 export function GRN(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -32,11 +32,11 @@ function draw(ctx, squareSize) {
   for (let i = 0; i < SIZE / squareSize / 2; i++) {
     colorList[i] = [];
     for (let j = 0; j < SIZE / squareSize / 2; j++) {
-      colorList[i].push(generateRandomColor());
+      colorList[i].push(blackOrWhite());
     }
   }
 
-  console.log(colorList);
+  // console.log(colorList);
 
   for (let i = 0; i < SIZE / 2; i += squareSize) {
     for (let j = 0; j < SIZE / 2; j += squareSize) {
@@ -71,7 +71,25 @@ function draw(ctx, squareSize) {
 }
 
 const ctx = getCanvas("canvas");
+const generateButton = document.querySelector(".generateButton");
 
-setInterval(() => {
-  draw(ctx, 50);
-}, 500);
+generateButton.addEventListener("click", () => {
+  const select = document.querySelector("#selector");
+  let squareSize = Number(select.value);
+  draw(ctx, squareSize);
+});
+
+const checkbox = document.querySelector("#checkbox");
+let isChecked = checkbox.checked;
+
+checkbox.addEventListener("change", (e) => {
+  isChecked = checkbox.checked;
+  const verticalLine = document.querySelector(".verticalLine");
+  const horizontalLine = document.querySelector(".horizontalLine");
+  verticalLine.style.display = isChecked ? "block" : "none";
+  horizontalLine.style.display = isChecked ? "block" : "none";
+});
+
+// setInterval(() => {
+//   draw(ctx, 25);
+// }, 500);

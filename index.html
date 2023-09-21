@@ -8,9 +8,37 @@
   </head>
   <body>
     <div id="app">
-      <canvas id="canvas"></canvas>
-      <div class="verticalLine"></div>
-      <div class="horizontalLine"></div>
+      <div class="control">
+        <div class="checkboxContainer">
+          <label for="checkbox">show guid lines</label>
+          <input type="checkbox" id="checkbox" />
+        </div>
+        <div class="options">
+          <label for="selector">size of pixels</label>
+          <select id="selector">
+            <option value="1">1px</option>
+            <option value="2">2px</option>
+            <option value="3">3px</option>
+            <option value="4">4px</option>
+            <option value="5">5px</option>
+            <option value="6">6px</option>
+            <option value="10">10px</option>
+            <option value="15">15px</option>
+            <option value="25">25px</option>
+            <option value="30">30px</option>
+            <option value="50" selected>50px</option>
+            <option value="75">75px</option>
+            <option value="100">100px</option>
+            <option value="150">150px</option>
+          </select>
+        </div>
+        <button class="generateButton">Generate Avatar</button>
+      </div>
+      <div class="canvasContainer">
+        <canvas id="canvas"></canvas>
+        <div class="verticalLine"></div>
+        <div class="horizontalLine"></div>
+      </div>
     </div>
     <script type="module" src="/main.js"></script>
   </body>
