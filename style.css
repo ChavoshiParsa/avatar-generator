@@ -37,18 +37,33 @@ body {
 }
 
 .generateButton {
-  background-color: rgb(27, 255, 179);
+  background-color: rgb(12, 147, 209);
   color: white;
   padding: 5px 15px;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 18px;
+  border: none;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.generateButton:hover {
+  background-color: rgb(47, 189, 255);
+}
+.downloadButton {
+  background-color: rgb(154, 47, 255);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
   border: none;
   margin-top: 20px;
 }
 
-.generateButton:hover {
-  background-color: rgb(0, 215, 143);
+.downloadButton:hover {
+  background-color: rgb(173, 86, 255);
 }
 
 .canvasContainer {
@@ -63,7 +78,7 @@ body {
   position: absolute;
   width: 1px;
   height: 602px;
-  background-color: rgb(255, 158, 249);
+  background-color: rgb(0, 255, 170);
   display: none;
   top: 0;
   left: 300px;
@@ -73,7 +88,7 @@ body {
   position: absolute;
   width: 602px;
   height: 1px;
-  background-color: rgb(255, 158, 249);
+  background-color: rgb(0, 255, 170);
   display: none;
   top: 300px;
   left: 0;

@@ -23,16 +23,17 @@ function getCanvas(id) {
   canvas.width = SIZE;
   canvas.height = SIZE;
   const ctx = canvas.getContext("2d");
-  return ctx;
+  return { ctx, canvas };
 }
 
-function draw(ctx, squareSize) {
+function draw(ctx, squareSize, rainbow) {
   const colorList = [];
 
   for (let i = 0; i < SIZE / squareSize / 2; i++) {
     colorList[i] = [];
     for (let j = 0; j < SIZE / squareSize / 2; j++) {
-      colorList[i].push(blackOrWhite());
+      let color = rainbow ? generateRandomColor() : blackOrWhite();
+      colorList[i].push(color);
     }
   }
 
@@ -70,26 +71,43 @@ function draw(ctx, squareSize) {
   // requestAnimationFrame(draw);
 }
 
-const ctx = getCanvas("canvas");
+const { ctx, canvas } = getCanvas("canvas");
+const checkboxLine = document.querySelector("#checkboxLine");
+const checkboxColor = document.querySelector("#checkboxColor");
 const generateButton = document.querySelector(".generateButton");
+const downloadButton = document.querySelector(".downloadButton");
+
+let isCheckedLine = checkboxLine.checked;
+checkboxLine.addEventListener("change", (e) => {
+  isCheckedLine = checkboxLine.checked;
+  const verticalLine = document.querySelector(".verticalLine");
+  const horizontalLine = document.querySelector(".horizontalLine");
+  verticalLine.style.display = isCheckedLine ? "block" : "none";
+  horizontalLine.style.display = isCheckedLine ? "block" : "none";
+});
+
+let isCheckedColor = checkboxColor.checked;
+checkboxColor.addEventListener("change", (e) => {
+  isCheckedColor = checkboxColor.checked;
+});
 
 generateButton.addEventListener("click", () => {
   const select = document.querySelector("#selector");
   let squareSize = Number(select.value);
-  draw(ctx, squareSize);
+  draw(ctx, squareSize, isCheckedColor);
 });
 
-const checkbox = document.querySelector("#checkbox");
-let isChecked = checkbox.checked;
+downloadButton.addEventListener("click", () => {
+  let canvasUrl = canvas.toDataURL();
+  const createEl = document.createElement("a");
+  createEl.href = canvasUrl;
 
-checkbox.addEventListener("change", (e) => {
-  isChecked = checkbox.checked;
-  const verticalLine = document.querySelector(".verticalLine");
-  const horizontalLine = document.querySelector(".horizontalLine");
-  verticalLine.style.display = isChecked ? "block" : "none";
-  horizontalLine.style.display = isChecked ? "block" : "none";
+  createEl.download = "download-this-canvas";
+
+  createEl.click();
+  createEl.remove();
 });
 
 // setInterval(() => {
-//   draw(ctx, 25);
+//   draw(ctx, 25, false);
 // }, 500);

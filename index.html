@@ -10,8 +10,12 @@
     <div id="app">
       <div class="control">
         <div class="checkboxContainer">
-          <label for="checkbox">show guid lines</label>
-          <input type="checkbox" id="checkbox" />
+          <label for="checkboxLine">show guid lines</label>
+          <input type="checkbox" id="checkboxLine" />
+        </div>
+        <div class="checkboxContainer">
+          <label for="checkboxColor">rainbow</label>
+          <input type="checkbox" id="checkboxColor" />
         </div>
         <div class="options">
           <label for="selector">size of pixels</label>
@@ -33,6 +37,7 @@
           </select>
         </div>
         <button class="generateButton">Generate Avatar</button>
+        <button class="downloadButton">Download</button>
       </div>
       <div class="canvasContainer">
         <canvas id="canvas"></canvas>
