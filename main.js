@@ -6,10 +6,10 @@ export function GRN(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateRandomColor() {
-  const r = GRN(0, 255);
-  const g = GRN(0, 255);
-  const b = GRN(0, 255);
+function generateRandomColor({ sr, sg, sb }, { er, eg, eb }) {
+  const r = GRN(sr, er);
+  const g = GRN(sg, eg);
+  const b = GRN(sb, eb);
   return `rgb(${r},${g},${b})`;
 }
 
@@ -32,7 +32,12 @@ function draw(ctx, squareSize, rainbow) {
   for (let i = 0; i < SIZE / squareSize / 2; i++) {
     colorList[i] = [];
     for (let j = 0; j < SIZE / squareSize / 2; j++) {
-      let color = rainbow ? generateRandomColor() : blackOrWhite();
+      let color = rainbow
+        ? generateRandomColor(
+            { sr: 0, sg: 0, sb: 0 },
+            { er: 255, eg: 255, eb: 255 }
+          )
+        : blackOrWhite();
       colorList[i].push(color);
     }
   }
